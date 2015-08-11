@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20150709174048) do
   add_index "admin_users", ["username"], name: "index_admin_users_on_username", using: :btree
 
   create_table "pages", force: :cascade do |t|
-    t.integer  "suject_id",  limit: 4
+    t.integer  "subject_id",  limit: 4
     t.string   "name",       limit: 255
     t.string   "permalink",  limit: 255
     t.integer  "position",   limit: 4
@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 20150709174048) do
   end
 
   add_index "pages", ["permalink"], name: "index_pages_on_permalink", using: :btree
-  add_index "pages", ["suject_id"], name: "index_pages_on_suject_id", using: :btree
+  add_index "pages", ["subject_id"], name: "index_pages_on_subject_id", using: :btree
 
   create_table "sections", force: :cascade do |t|
     t.integer  "page_id",      limit: 4
