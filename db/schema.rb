@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20150709174048) do
   add_index "admin_users", ["username"], name: "index_admin_users_on_username", using: :btree
 
   create_table "pages", force: :cascade do |t|
-    t.integer  "subject_id",  limit: 4
+    t.integer  "subject_id", limit: 4
     t.string   "name",       limit: 255
     t.string   "permalink",  limit: 255
     t.integer  "position",   limit: 4
