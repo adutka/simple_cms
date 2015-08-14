@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150709174048) do
+ActiveRecord::Schema.define(version: 20150814192810) do
 
   create_table "admin_users", force: :cascade do |t|
     t.string   "first_name",      limit: 25
@@ -25,8 +25,15 @@ ActiveRecord::Schema.define(version: 20150709174048) do
 
   add_index "admin_users", ["username"], name: "index_admin_users_on_username", using: :btree
 
+  create_table "admin_users_pages", force: :cascade do |t|
+    t.integer "admin_user_id", limit: 4
+    t.integer "page_id",       limit: 4
+  end
+
+  add_index "admin_users_pages", ["admin_user_id", "page_id"], name: "index_admin_users_pages_on_admin_user_id_and_page_id", using: :btree
+
   create_table "pages", force: :cascade do |t|
-    t.integer  "suject_id",  limit: 4
+    t.integer  "subject_id", limit: 4
     t.string   "name",       limit: 255
     t.string   "permalink",  limit: 255
     t.integer  "position",   limit: 4
@@ -36,7 +43,17 @@ ActiveRecord::Schema.define(version: 20150709174048) do
   end
 
   add_index "pages", ["permalink"], name: "index_pages_on_permalink", using: :btree
-  add_index "pages", ["suject_id"], name: "index_pages_on_suject_id", using: :btree
+  add_index "pages", ["subject_id"], name: "index_pages_on_subject_id", using: :btree
+
+  create_table "section_edits", force: :cascade do |t|
+    t.integer  "admin_user_id", limit: 4
+    t.integer  "section_id",    limit: 4
+    t.string   "summary",       limit: 255
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "section_edits", ["admin_user_id", "section_id"], name: "index_section_edits_on_admin_user_id_and_section_id", using: :btree
 
   create_table "sections", force: :cascade do |t|
     t.integer  "page_id",      limit: 4
