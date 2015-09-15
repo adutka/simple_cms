@@ -12,6 +12,6 @@
  *
  *= require_tree .
  *=require public
-
+ *=require admin
  *= require_self
  */
